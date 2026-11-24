@@ -1,6 +1,6 @@
 # TabPFN vs. gradient boosting: an honest benchmark
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/YOUR_GITHUB_USERNAME/tabpfn-honest-benchmark/blob/main/tabpfn_honest_benchmark.ipynb)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/JWLZGG/tabpfn-honest-benchmark/blob/main/tabpfn_honest_benchmark.ipynb)
 
 **Built with PriorLabs-TabPFN.** This repo starts from Prior Labs' official [benchmarking example](https://github.com/PriorLabs/TabPFN/blob/main/examples/benchmarking_tabpfn.py), which compares TabPFN and XGBoost on German credit data by ROC-AUC and run time. It reproduces that example, then stress-tests it the way you would before choosing a model for production: confidence intervals, stronger baselines, data leakage, random vs. temporal splits, class imbalance, inference cost and calibration.
 
