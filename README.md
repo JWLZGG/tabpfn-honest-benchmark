@@ -17,7 +17,7 @@ TabPFN v2 with **no tuning at all**:
 | Same, XGBoost trained on TabPFN's 10k-row sample | 0.806 | 0.807 | −0.001 (CI −0.008 to +0.007). A tie |
 | Bank marketing, **temporal** split (train 2008–09, test 2010) | **0.708** | 0.674 (XGBoost) | **+0.033** (CI +0.013 to +0.054) |
 | Calibration error on the temporal split (ECE, lower is better) | **0.089** | 0.200 (logistic regression) | |
-| Rolling monthly backtest over 2010, 3-month windows (mean of 9 months) | **0.738** | 0.714 (XGBoost, all history) | +0.024 (no formal test; month-to-month sd ≈ 0.06) |
+| Rolling monthly backtest over 2010, 3-month windows (mean of 9 months) | **0.738** | 0.682 (XGBoost, same windows) | +0.055; TabPFN won all 9 months (sign test p ≈ 0.004) |
 | 250 training rows (ROC-AUC) | **0.761** | 0.725 (logistic regression) | +0.036, gone by about 1,000 rows |
 | Prediction cost with 10k rows of context (T4 GPU) | 11.6 ms per row | **0.01 ms per row** (XGBoost) | About 1,000× slower |
 
@@ -48,7 +48,7 @@ A model winning one benchmark doesn't mean it wins in every situation. This note
 
 | Helped | Didn't help, or cost more |
 |---|---|
-| **Small tables:** best at 250 rows and on 3-month rolling windows of about 750 rows | **Large tables:** v2 reads at most 10k rows; with 33k rows available, XGBoost was significantly better |
+| **Small tables:** best at 250 rows, and beat XGBoost in 9 of 9 months on 3-month rolling windows of about 750 rows | **Large tables:** v2 reads at most 10k rows; with 33k rows available, XGBoost was significantly better |
 | **Shift over time:** best AUC, log loss and calibration on 2010 data | **Prediction cost:** about 1,000× XGBoost per row at 10k context, and it needs a GPU |
 | **No tuning and very stable:** seed-to-seed sd of 0.001 AUC | **Calibration on the random split:** it predicted 9.3% vs a true 11.3% (ECE 0.020 vs 0.010 for XGBoost) |
 | | **German credit:** best on average, but by less than the noise |
